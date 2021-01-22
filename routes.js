@@ -1,5 +1,6 @@
 module.exports = function (app) {
     var request = require('./controllers/requestController');
+    var requestSach = require('./controllers/sachController');
 
     
     // todoList Routes
@@ -13,6 +14,19 @@ module.exports = function (app) {
         .post(request.deleteCustomer)
     app.route('/addCustomer')
         .post(request.addCustomer)
+    //--------------LOAI SACH-------------
+    app.route('/listLoaiSach')
+        .get(requestSach.getListLoaiSach)
+    app.route('/addLoaiSach')
+        .post(requestSach.addLoaiSach)
+
+
+    //--------------NXB-------------
+    app.route('/listNXB')
+        .get(requestSach.getListNXB)
+    app.route('/addNXB')
+        .post(requestSach.addNXB)
+
     // app.route('/requests/accept')
     //     .post(request.accept)
     // app.route('/requests/refuse')

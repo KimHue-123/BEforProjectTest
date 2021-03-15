@@ -79,3 +79,36 @@ exports.UpdateDataTest = function(req, res) {
         res.send(response);
     });
 };
+
+exports.checkLogin = function(req, res) {
+    Task.checkLogin(req.body, function(err, response) {
+        if (err) {
+            res.send(err);
+        }
+        res.send(response);
+    });
+};
+exports.getListUser = function(req, res) {
+    Task.getListUser(function(err, response) {
+        if (err) {
+            res.send(err);
+        }
+        res.send(response);
+    });
+};
+exports.addDataTest = function(req, res) {
+    Task.addDataTest(req.body, function(err, response) {
+        if (err) {
+            res.send(err);
+        }
+        res.send(response);
+    });
+};
+exports.getDataTestByUserName = function(req, res) {
+    Task.getDataTestByUserName(req.body, function(err, response) {
+        if (err) {
+            res.send(err);
+        }
+        res.send(response);
+    });
+};

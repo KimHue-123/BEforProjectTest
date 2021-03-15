@@ -144,5 +144,52 @@ Task.UpdateDataTest = function(param, result) {
     });
 }
 
+Task.checkLogin = function(param, result) {
+    var request = new sql.Request();
+
+    request.input("userName", sql.NVARCHAR(50), param.userName);
+    request.input("pass", sql.VARCHAR(20), param.pass);
+    request.execute("checkLogin").then(function(res) {
+        result(null, res);
+    }).catch(function(err) {
+        console.log(err);
+    });
+    console.log("user name: ", param.userName);
+    console.log("pass: ", param.pass);
+}
+
+Task.getListUser = function(result) {
+    var request = new sql.Request();
+    request.execute("getListUser").then(function(res) {
+        result(null, res);
+    }).catch(function(err) {
+        console.log(err);
+    });
+}
+
+Task.addDataTest = function(param, result) {
+    var request = new sql.Request();
+
+    request.input("userName", sql.NVARCHAR(50), param.userName);
+    request.input("pass", sql.VARCHAR(20), param.pass);
+    request.input("roles", sql.NVARCHAR(10), param.userName);
+    request.input("firstName", sql.NVARCHAR(20), param.firstName);
+    request.input("lastName", sql.NVARCHAR(20), param.lastName);
+    request.execute("addDataTest").then(function(res) {
+        result(null, res);
+    }).catch(function(err) {
+        console.log(err);
+    });
+}
+
+Task.getDataTestByUserName = function(param, result) {
+    var request = new sql.Request();
+    request.input("userName", sql.NVARCHAR(50), param.userName);
+    request.execute("getDataTestByUserName").then(function(res) {
+        result(null, res);
+    }).catch(function(err) {
+        console.log(err);
+    });
+}
 
 module.exports = Task;

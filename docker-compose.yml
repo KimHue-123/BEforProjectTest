@@ -1,0 +1,29 @@
+version: '2'
+services:
+  sql:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    restart: always
+    hostname: mssql
+    environment: 
+      SA_PASSWORD: admin123456
+      ACCEPT_EULD: Y
+    volumes:
+      - mssqlvolume:/var/opt/mssql/data # thư mục lưu DB
+      - ./bk:/var/opt/mssql/backup      # thư  mục chứa file backup
+    ports:
+      - "1433:1433"
+  beweb:
+    build: .
+    working_dir: /usr/src/be
+    command: /bin/bash startup.sh
+    volumes:
+      - .:/usr/src/be
+    ports:
+      - "32768:3000"
+    depends_on:
+      - sql
+  feweb:
+    build: ../tach
+    working_dir: /usr/src/fe 
+    volumes: 
+      - ../tach: /usr/src/fe 
